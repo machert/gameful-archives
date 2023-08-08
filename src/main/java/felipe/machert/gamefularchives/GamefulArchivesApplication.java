@@ -1,0 +1,13 @@
+package felipe.machert.gamefularchives;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class GamefulArchivesApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(GamefulArchivesApplication.class, args);
+	}
+
+}
