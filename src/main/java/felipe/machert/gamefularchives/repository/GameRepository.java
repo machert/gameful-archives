@@ -1,6 +1,6 @@
-package felipe.machert.gamefularchives.repositories;
+package felipe.machert.gamefularchives.repository;
 
-import felipe.machert.gamefularchives.models.GameModel;
+import felipe.machert.gamefularchives.model.GameModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
