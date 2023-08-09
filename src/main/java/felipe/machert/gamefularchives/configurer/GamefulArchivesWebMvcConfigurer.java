@@ -1,4 +1,4 @@
-package felipe.machert.gamefularchives.Configurer;
+package felipe.machert.gamefularchives.configurer;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.PageRequest;

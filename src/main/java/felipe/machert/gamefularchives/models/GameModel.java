@@ -11,8 +11,11 @@ public class GameModel extends RepresentationModel<GameModel> implements Seriali
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long idGame;
+    @Column(nullable = false, length = 100)
     private String name;
+    @Column(nullable = true, length = 70)
     private String platform;
+    @Column(nullable = true)
 
     private Integer year = null;
 

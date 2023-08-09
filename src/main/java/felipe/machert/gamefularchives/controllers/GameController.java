@@ -1,5 +1,6 @@
 package felipe.machert.gamefularchives.controllers;
-import felipe.machert.gamefularchives.Dtos.GameRecordDto;
+import felipe.machert.gamefularchives.dtos.GameRecordDto;
+import felipe.machert.gamefularchives.exception.InternalServerErrorException;
 import felipe.machert.gamefularchives.models.GameModel;
 import felipe.machert.gamefularchives.repositories.GameRepository;
 import jakarta.validation.Valid;
@@ -51,6 +52,12 @@ public class GameController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(game.get());
     }
+
+//    @GetMapping("/games/errorException")
+//    public ResponseEntity<Object> errorException(){
+//        throw new InternalServerErrorException("This is an example of an internal server error.");
+//        throw new BadRequestException("This is an example of a bad request exception.");
+//    }
 
     @PostMapping("/games")
     public ResponseEntity<GameModel> saveGame(@RequestBody @Valid GameRecordDto gameRecordDto ){
