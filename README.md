@@ -21,3 +21,5 @@
 - Autenticação basic auth
 - Tratamento de exceptions
 - Paginação padrão nas rotas de listagem
+- Actuator
+- Prometheus

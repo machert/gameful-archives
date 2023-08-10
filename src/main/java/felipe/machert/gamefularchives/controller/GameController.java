@@ -35,7 +35,7 @@ public class GameController {
     }
 
     @GetMapping("/games/{id}")
-    public ResponseEntity<Object> getById(@PathVariable Long id){
+    public ResponseEntity<GameModel> getById(@PathVariable long id){
         return ResponseEntity.status(HttpStatus.OK).body(gameService.findByIdOrThrowBadRequestException(id));
     }
 
@@ -51,13 +51,13 @@ public class GameController {
     }
 
     @PutMapping("/games/{id}")
-    public ResponseEntity<Object> updateGame(@PathVariable Long id, @RequestBody @Valid GameDto gameDto){
+    public ResponseEntity<Void> updateGame(@PathVariable long id, @RequestBody @Valid GameDto gameDto){
         gameService.update(id, gameDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/games/{id}")
-    public ResponseEntity<Object> updateGame(@PathVariable Long id){
+    public ResponseEntity<Void> deleteGame(@PathVariable long id){
         gameService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
