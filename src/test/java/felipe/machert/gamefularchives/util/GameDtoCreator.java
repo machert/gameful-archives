@@ -7,7 +7,7 @@ public class GameDtoCreator {
         GameDto gameDto = new GameDto();
         gameDto.setName(GameCreator.createGameToBeSaved().getName());
         gameDto.setPlatform(GameCreator.createGameToBeSaved().getPlatform());
-        gameDto.setYear_finished(GameCreator.createGameToBeSaved().getYear_finished());
+//        gameDto.setYear_finished(GameCreator.createGameToBeSaved().getYear_finished());
 
         return gameDto;
     }

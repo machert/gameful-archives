@@ -1,5 +1,6 @@
 package felipe.machert.gamefularchives.dto;
 
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -12,7 +13,7 @@ public class GameDto{
     @NotBlank
     private String name;
     private String platform;
-    @Size(max = 4)
+    @Max(value = 9999, message = "Year finished must be a positive value with maximum range of 9999")
     private Integer year_finished;
 
 }

@@ -23,5 +23,5 @@ public class GameModel implements Serializable {
     @Column(nullable = true, length = 70)
     private String platform;
     @Column(nullable = true)
-    private Integer year_finished = null;
+    private Integer year_finished;
 }
