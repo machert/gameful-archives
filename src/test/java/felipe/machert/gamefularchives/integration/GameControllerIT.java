@@ -8,6 +8,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -37,11 +38,13 @@ public class GameControllerIT {
         GameModel gameModel = gameRepository.save(GameCreator.createGameToBeSaved());
         String exceptedName = gameModel.getName();
 
-        PageableResponse<GameModel> gamePage = testRestTemplate.exchange("/games/pages",
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<PageableResponse<GameModel>>() {
-                }).getBody();
+        PageableResponse<GameModel> gamePage = testRestTemplate
+                .withBasicAuth("machert", "1234")
+                .exchange("/games/pages",
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<PageableResponse<GameModel>>() {
+                    }).getBody();
 
         Assertions.assertThat(gamePage).isNotNull();
 
@@ -59,7 +62,14 @@ public class GameControllerIT {
     @DisplayName("List return a game when successful")
     void listReturnsListOfGamesWhenSuccessful(){
         gameRepository.save(GameCreator.createGameToBeSaved());
-        List<GameModel> gameList = gameRepository.findAll();
+
+        List<GameModel> gameList = testRestTemplate
+                .withBasicAuth("machert", "1234")
+                .exchange("/games",
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<List<GameModel>>() {
+                    }).getBody();
 
         Assertions.assertThat(gameList).isNotNull();
 
@@ -95,10 +105,12 @@ public class GameControllerIT {
     @DisplayName("save an game then return game when successful")
     void saveReturnsGameWhenSuccessful(){
 
-        ResponseEntity<GameModel> gameResponseEntity = testRestTemplate.exchange("/games",
-                HttpMethod.POST,
-                new HttpEntity<>(GameCreator.createGameToBeSaved()),
-                GameModel.class);
+        ResponseEntity<GameModel> gameResponseEntity = testRestTemplate.
+                withBasicAuth("machert", "1234").
+                exchange("/games",
+                        HttpMethod.POST,
+                        new HttpEntity<>(GameCreator.createGameToBeSaved()),
+                        GameModel.class);
 
         Assertions.assertThat(gameResponseEntity).isNotNull();
         Assertions.assertThat(gameResponseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
@@ -116,11 +128,13 @@ public class GameControllerIT {
 
         savedGame.setName("Prince of persia 2 Warrior within");
 
-        ResponseEntity<Void> gameResponseEntity = testRestTemplate.exchange("/games/{id}",
-                HttpMethod.PUT,
-                new HttpEntity<>(savedGame),
-                Void.class,
-                savedGame.getId());
+        ResponseEntity<Void> gameResponseEntity = testRestTemplate.
+                withBasicAuth("machert", "1234").
+                exchange("/games/{id}",
+                    HttpMethod.PUT,
+                    new HttpEntity<>(savedGame),
+                    Void.class,
+                    savedGame.getId());
 
         Assertions.assertThat(gameResponseEntity).isNotNull();
         Assertions.assertThat(gameResponseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -135,7 +149,7 @@ public class GameControllerIT {
 
         GameModel savedGame = gameRepository.save(GameCreator.createGameToBeSaved());
 
-        ResponseEntity<Void> gameResponseEntity = testRestTemplate.exchange("/games/{id}",
+        ResponseEntity<Void> gameResponseEntity = testRestTemplate.withBasicAuth("machert", "1234").exchange("/games/{id}",
                 HttpMethod.DELETE,
                 null,
                 Void.class,

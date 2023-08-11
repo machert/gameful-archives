@@ -2,7 +2,9 @@ package felipe.machert.gamefularchives.controller;
 import felipe.machert.gamefularchives.dto.GameDto;
 import felipe.machert.gamefularchives.model.GameModel;
 import felipe.machert.gamefularchives.service.GameService;
+import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,8 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RestController
 public class GameController {
@@ -30,7 +30,7 @@ public class GameController {
     }
 
     @GetMapping("/games/pages")
-    public ResponseEntity<Page<GameModel>> getAllGamesPages(Pageable pageable){
+    public ResponseEntity<Page<GameModel>> getAllGamesPages(@ParameterObject Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(gameService.findAll(pageable));
     }
 
