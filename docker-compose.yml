@@ -9,6 +9,7 @@ services:
       - "3306:3306"
     volumes:
       - gameful_archive_data:/var/lib/mysq
+      - ./script_init_db.sql:/docker-entrypoint-initdb.d/script_init_db.sql
 
   prometheus:
     image: prom/prometheus:latest
