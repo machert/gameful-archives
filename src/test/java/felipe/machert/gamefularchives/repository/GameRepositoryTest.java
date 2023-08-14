@@ -1,6 +1,5 @@
 package felipe.machert.gamefularchives.repository;
 
-import felipe.machert.gamefularchives.exception.BadRequestException;
 import felipe.machert.gamefularchives.model.GameModel;
 import felipe.machert.gamefularchives.util.GameCreator;
 import org.assertj.core.api.Assertions;

@@ -1,20 +1,20 @@
 package felipe.machert.gamefularchives.controller;
+
 import felipe.machert.gamefularchives.dto.GameDto;
 import felipe.machert.gamefularchives.model.GameModel;
 import felipe.machert.gamefularchives.service.GameService;
-import io.swagger.v3.oas.annotations.Parameter;
 import jakarta.validation.Valid;
 import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Page;
-
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class GameController {
 
     private final GameService gameService;
