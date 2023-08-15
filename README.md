@@ -1,3 +1,6 @@
+## Sobre o repositório
+Gameful archives é um projeto de portifolio de api spring boot para jogos zerados
+
 ## Requisitos
 - JDK 17 ou mais
 - IDE JAVA
